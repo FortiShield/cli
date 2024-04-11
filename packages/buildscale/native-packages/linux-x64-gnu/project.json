@@ -1,0 +1,4 @@
+{
+  "name": "linux-x64-gnu",
+  "$schema": "../../../../node_modules/buildscale/schemas/project-schema.json"
+}

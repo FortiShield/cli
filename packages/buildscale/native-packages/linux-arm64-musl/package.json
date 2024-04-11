@@ -1,0 +1,29 @@
+{
+  "name": "@buildscale/buildscale-linux-arm64-musl",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildscale/cli.git",
+    "directory": "packages/buildscale/native-packages/linux-arm64-musl"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm64"
+  ],
+  "main": "buildscale.linux-arm64-musl.node",
+  "files": [
+    "buildscale.linux-arm64-musl.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "libc": [
+    "musl"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@buildscale/buildscale-linux-arm-gnueabihf",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildscale/cli.git",
+    "directory": "packages/buildscale/native-packages/linux-arm-gnueabihf"
+  },
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "arm"
+  ],
+  "main": "buildscale.linux-arm-gnueabihf.node",
+  "files": [
+    "buildscale.linux-arm-gnueabihf.node"
+  ],
+  "engines": {
+    "node": ">= 10"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
