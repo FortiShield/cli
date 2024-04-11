@@ -1,4 +1,0 @@
-{
-  "name": "linux-arm-gnueabihf",
-  "$schema": "../../../../node_modules/buildscale/schemas/project-schema.json"
-}
