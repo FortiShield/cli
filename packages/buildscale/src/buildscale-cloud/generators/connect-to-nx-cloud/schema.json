@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "id": "BuildscaleCloudInit",
+  "title": "Add Buildscale Cloud Configuration to the workspace",
+  "description": "Connect a workspace to Buildscale Cloud.",
+  "type": "object",
+  "cli": "buildscale",
+  "properties": {
+    "analytics": {
+      "type": "boolean",
+      "description": "Anonymously store hashed machine ID for task runs",
+      "default": false
+    },
+    "installationSource": {
+      "type": "string",
+      "description": "Name of Buildscale Cloud installation invoker (ex. user, add-buildscale-to-monorepo, create-buildscale-workspace, buildscale-upgrade",
+      "default": "user"
+    },
+    "hideFormatLogs": {
+      "type": "boolean",
+      "description": "Hide formatting logs",
+      "x-priority": "internal"
+    }
+  },
+  "additionalProperties": false,
+  "required": []
+}

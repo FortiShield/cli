@@ -1,0 +1,10 @@
+{
+  "generators": {
+    "connect-to-buildscale-cloud": {
+      "factory": "./src/buildscale-cloud/generators/connect-to-buildscale-cloud/connect-to-buildscale-cloud",
+      "schema": "./src/buildscale-cloud/generators/connect-to-buildscale-cloud/schema.json",
+      "description": "Connect a workspace to Buildscale Cloud",
+      "x-hidden": true
+    }
+  }
+}

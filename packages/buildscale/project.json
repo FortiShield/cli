@@ -1,0 +1,117 @@
+{
+  "name": "buildscale",
+  "$schema": "../../node_modules/buildscale/schemas/project-schema.json",
+  "sourceRoot": "packages/buildscale",
+  "projectType": "library",
+  "implicitDependencies": ["graph-client"],
+  "targets": {
+    "build-native": {
+      "outputs": ["{projectRoot}/src/native/*.node"],
+      "executor": "@monodon/rust:napi",
+      "options": {
+        "dist": "packages/buildscale/src/native",
+        "jsFile": "packages/buildscale/src/native/index.js",
+        "release": true
+      },
+      "configurations": {
+        "local": {
+          "release": false
+        }
+      }
+    },
+    "copy-native-package-directories": {
+      "command": "node scripts/copy.js build/packages/buildscale/native-packages/* build/packages"
+    },
+    "artifacts": {
+      "dependsOn": ["copy-native-package-directories"],
+      "command": "pnpm napi artifacts -c build/packages/buildscale/package.json -d ./artifacts --dist build/packages"
+    },
+    "build-base": {
+      "executor": "@buildscale/js:tsc",
+      "options": {
+        "main": "packages/buildscale/bin/buildscale.ts",
+        "assets": [
+          {
+            "input": "packages/buildscale",
+            "glob": ".npmignore",
+            "output": "/"
+          },
+          {
+            "input": "packages/buildscale",
+            "glob": "**/files/**",
+            "output": "/"
+          },
+          {
+            "input": "packages/buildscale",
+            "glob": "**/files/**/.gitkeep",
+            "output": "/"
+          },
+          {
+            "input": "packages/buildscale",
+            "glob": "**/*.json",
+            "ignore": [
+              "**/tsconfig*.json",
+              "**/project.json",
+              "**/__fixtures__/**"
+            ],
+            "output": "/"
+          },
+          {
+            "input": "packages/buildscale",
+            "glob": "**/*.{js,css,html,svg}",
+            "ignore": ["**/jest.config.js"],
+            "output": "/"
+          },
+          {
+            "input": "packages/buildscale",
+            "glob": "**/*.d.ts",
+            "output": "/"
+          },
+          {
+            "input": "",
+            "glob": "LICENSE",
+            "output": "/"
+          }
+        ]
+      }
+    },
+    "echo": {
+      "command": "echo hi"
+    },
+    "build": {
+      "dependsOn": ["^build-client", "build-base", "build-native"],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "dependentTasksOutputFiles": "**/*.node"
+        }
+      ],
+      "executor": "buildscale:run-commands",
+      "outputs": ["{workspaceRoot}/build/packages/buildscale"],
+      "options": {
+        "commands": [
+          {
+            "command": "node ./scripts/copy-local-native.js.buildscalew.
+          },
+          {
+            "command": "node ./scripts/copy-graph-client.js"
+          },
+          {
+            "command": "node ./scripts/chmod build/packages/buildscale/bin/buildscale.js"
+          },
+          {
+            "command": "node ./scripts/copy-readme.js.buildscalew.
+          }
+        ],
+        "parallel": false
+      }
+    },
+    "add-extra-dependencies": {
+      "command": "node ./scripts/add-dependency-to-build.js buildscale @nrwl/tao"
+    },
+    "lint": {},
+    "test": {},
+    "test-native": {}
+  }
+}
