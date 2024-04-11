@@ -33,7 +33,7 @@ export function runBuildscaleSync(
   execSync(`${baseCmd} ${cmd}`, options);
 }
 
-export async function runNxAsync(
+export async function runBuildscaleAsync(
   cmd: string,
   options?: ExecOptions & { cwd?: string; silent?: boolean }
 ) {

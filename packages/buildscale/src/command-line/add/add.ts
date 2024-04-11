@@ -4,7 +4,7 @@ import * as ora from 'ora';
 import { isAngularPluginInstalled } from '../../adapter/angular-json';
 import type { GeneratorsJsonEntry } from '../../config/misc-interfaces';
 import { readBuildscaleJson } from '../../config/buildscale-json';
-import { runNxAsync } from '../../utils/child-process';
+import { runBuildscaleAsync } from '../../utils/child-process';
 import { writeJsonFile } from '../../utils/fileutils';
 import { logger } from '../../utils/logger';
 import { output } from '../../utils/output';
@@ -63,7 +63,7 @@ async function installPackage(pkgName: string, version: string): Promise<void> {
     writeJsonFile('buildscale.json', buildscaleJson);
 
     try {
-      await runNxAsync('--help', { silent: true });
+      await runBuildscaleAsync('--help', { silent: true });
     } catch (e) {
       // revert adding the plugin to buildscale.json
       buildscaleJson.installation.plugins[pkgName] = undefined;
@@ -116,7 +116,7 @@ async function initializePlugin(
         process.env.BUILDSCALE_ADD_PLUGINS !== 'false' &&
         coreBuildscalePlugins.includes(pkgName);
     }
-    await runNxAsync(
+    await runBuildscaleAsync(
       `g ${pkgName}:${initGenerator} --keepExistingVersions${
         updatePackageScripts ? ' --updatePackageScripts' : ''
       }`,
